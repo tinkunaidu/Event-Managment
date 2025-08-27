@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Management Website</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f4f9;
+    }
+    header {
+      background: #2c3e50;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #34495e;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      margin: 20px auto;
+    }
+    .event {
+      background: white;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .event h2 {
+      margin: 0;
+      color: #2c3e50;
+    }
+    .event p {
+      color: #555;
+    }
+    button {
+      background: #27ae60;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #219150;
+    }
+    /* Registration Form */
+    #registerForm {
+      display: none;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 20px;
+    }
+    input, select {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    .success {
+      color: green;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Event Management Website</h1>
+    <p>Browse & Register for Upcoming Events</p>
+  </header>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#events">Events</a>
+    <a href="#registerForm">Register</a>
+  </nav>
+
+  <div class="container" id="events">
+    <div class="event">
+      <h2>Tech Conference 2025</h2>
+      <p>Date: 15th September 2025 | Venue: Hyderabad</p>
+      <p>Learn the latest trends in AI, Cloud, and IoT.</p>
+      <button onclick="showForm('Tech Conference 2025')">Register</button>
+    </div>
+
+    <div class="event">
+      <h2>Music Festival</h2>
+      <p>Date: 20th September 2025 | Venue: Bangalore</p>
+      <p>A night filled with music, food, and fun.</p>
+      <button onclick="showForm('Music Festival')">Register</button>
+    </div>
+  </div>
+
+  <!-- Registration Form -->
+  <div class="container" id="registerForm">
+    <h2>Register for Event</h2>
+    <form id="form">
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <select id="eventName">
+        <option value="">Select Event</option>
+        <option value="Tech Conference 2025">Tech Conference 2025</option>
+        <option value="Music Festival">Music Festival</option>
+      </select>
+      <button type="submit">Submit</button>
+    </form>
+    <p class="success" id="successMsg"></p>
+  </div>
+
+  <script>
+    function showForm(eventName) {
+      document.getElementById("registerForm").style.display = "block";
+      document.getElementById("eventName").value = eventName;
+    }
+
+    document.getElementById("form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      let name = document.getElementById("name").value;
+      let email = document.getElementById("email").value;
+      let event = document.getElementById("eventName").value;
+
+      if(name && email && event) {
+        document.getElementById("successMsg").innerText = 
+          `🎉 Thank you ${name}! You have successfully registered for ${event}.`;
+        document.getElementById("form").reset();
+      }
+    });
+  </script>
+</body>
+</html>
